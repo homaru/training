@@ -1,0 +1,26 @@
+Type: "AWS::CloudWatch::Alarm"
+Properties:
+# ActionsEnabled in case of we need to take some action
+  ActionsEnabled: true
+# Actions definition, commented temporally
+#  AlarmActions:
+#    - String
+  AlarmDescription: String
+  AlarmName: String
+  ComparisonOperator: String
+  Dimensions:
+    - Dimension
+  EvaluateLowSampleCountPercentile: String
+  EvaluationPeriods: Integer
+  ExtendedStatistic: String
+  InsufficientDataActions:
+    - String
+  MetricName: String
+  Namespace: String
+  OKActions:
+    - String
+  Period: Integer
+  Statistic: String
+  Threshold: Double
+  TreatMissingData: String
+  Unit: String
