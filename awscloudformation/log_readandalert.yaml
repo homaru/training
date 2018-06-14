@@ -5,8 +5,8 @@ Properties:
 # Actions definition, commented temporally
 #  AlarmActions:
 #    - String
-  AlarmDescription: String
-  AlarmName: String
+  AlarmDescription: Alarm to alert when the error appears
+  AlarmName: error-show
   ComparisonOperator: String
   Dimensions:
     - Dimension
