@@ -1,20 +1,28 @@
-Type: "AWS::CloudWatch::Alarm"
-Properties:
-# ActionsEnabled in case of we need to take some action
-  ActionsEnabled: true
+# Assumption1: CloudWatch is already created and running, so i'll need to imagine what is the 
+#              keys, name and definitions.
+Resources:
+  CW_NewApp_Log: # Name of CloudWatch alarm created in base of Assumption1
+    Type: "AWS::CloudWatch::Alarm"
+    Properties:
+      ActionsEnabled: true # ActionsEnabled in case of we need to take some action
 # Actions definition, commented temporally
-#  AlarmActions:
-#    - String
-  AlarmDescription: Alarm to alert when the error appears
-  AlarmName: error-show
-  ComparisonOperator: String
-  Dimensions:
-    - Dimension
-  EvaluateLowSampleCountPercentile: String
-  EvaluationPeriods: Integer
-  ExtendedStatistic: String
-  InsufficientDataActions:
-    - String
+#      AlarmActions:
+#        - String
+      AlarmDescription: Alarm to alert when the errors present in base.log appears
+# Probably we'll need to create others Alarms
+      AlarmName: DBTimeResponse # Name of alarm that remember what the alarm does
+      ComparisonOperator: GreaterThanOrEqualToThreshold # Operator to validate with the threshold
+# Avaliate this conf later
+#      Dimensions:
+#        - Dimension
+# Useless for this alarm, used to alarms that based in percentis
+#      EvaluateLowSampleCountPercentile: String
+      EvaluationPeriods: 3 # Validate the operation at least 3 times before trigger the alarm
+# Useless for this alarm
+#      ExtendedStatistic: String
+# Useless for this alarm
+#      InsufficientDataActions:
+#        - String
   MetricName: String
   Namespace: String
   OKActions:
@@ -24,3 +32,17 @@ Properties:
   Threshold: Double
   TreatMissingData: String
   Unit: String
+
+# Função Ref
+!Ref CW_NewApp_Log ?? >
+# Retorna o exemplo abaixo:
+AWS::CloudWatch::Alarm
+Nome
+mystack-myalarm-3AOHFRGOXR5T
+
+# Função GetAtt
+!GetAtt CW_NewApp_Log.Arn ?? >
+# Retorna o exemplo abaixo:
+AWS::CloudWatch::Alarm
+Arn
+Exemplo: arn:aws:cloudwatch:us-east-2:123456789012:alarm:myCloudWatchAlarm-CPUAlarm-UXMMZK36R55Z
